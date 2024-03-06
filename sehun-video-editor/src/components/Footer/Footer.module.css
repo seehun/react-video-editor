@@ -1,0 +1,53 @@
+.viewport {
+  width: 100%;
+  height: 16vh;
+  background-color: #4f4f4f;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #e0e0e0;
+}
+
+.contents {
+  width: 65%;
+  height: 70%;
+  display: flex;
+  justify-content: space-between;
+}
+.content_info {
+  font-family: SUIT;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.content_info img {
+  margin-bottom: 12px;
+}
+
+.content_info .title {
+  display: inline-block;
+  width: 32px;
+}
+
+.contents button {
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.footer_btns button {
+  border: none;
+  font-family: SUIT;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #828282;
+  cursor: pointer;
+}
