@@ -1,0 +1,39 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+  height: 6vh;
+}
+.header_contents {
+  width: 65%;
+
+  height: 100%;
+  /* border: 1px solid #000; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header_contents button {
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.header_btns button {
+  border: none;
+  background-color: #fff;
+  font-family: SUIT;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #828282;
+  cursor: pointer;
+}
+
+.header_btns .active {
+  color: #000;
+}
