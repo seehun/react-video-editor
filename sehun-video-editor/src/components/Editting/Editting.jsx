@@ -22,9 +22,9 @@ function Editting() {
         <div className={styles.video}></div>
         <div className="slideBar"></div>
         <div className={styles.Btn_group}>
-          <Button></Button>
-          <Button></Button>
-          <Button></Button>
+          <Button variant="light">GIF</Button>
+          <Button variant="light">SOUND</Button>
+          <Button variant="light">SAVE</Button>
         </div>
       </div>
     </div>
