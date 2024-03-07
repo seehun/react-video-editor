@@ -29,7 +29,6 @@ function BeforeEdit({ setVideoFile }) {
             className={styles.button}
             onClick={() => {
               uploadFile.current.click();
-              console.log(uploadFile.files);
             }}
           >
             Video Upload

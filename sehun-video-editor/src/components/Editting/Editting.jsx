@@ -3,7 +3,7 @@ import styles from "./Editting.module.css";
 import { Button } from "react-bootstrap";
 import VideoPlayer from "./VideoPlayer/VideoPlayer";
 
-function Editting({ videoFile }) {
+function Editting({ videoFile, setVideoFile }) {
   const uploadFile = useRef();
   console.log("a", videoFile);
   return (
@@ -19,7 +19,15 @@ function Editting({ videoFile }) {
           >
             reselect Video
           </Button>
-          <input type="file" style={{ display: "none" }} ref={uploadFile} />
+          <input
+            type="file"
+            style={{ display: "none" }}
+            ref={uploadFile}
+            accept=".mp4"
+            onChange={(e) => {
+              setVideoFile(e.target.files[0]);
+            }}
+          />
         </div>
         <div className={styles.video}>
           <VideoPlayer src={videoFile} />

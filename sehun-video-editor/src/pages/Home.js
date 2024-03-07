@@ -17,7 +17,7 @@ function Home() {
       {!videoFile ? (
         <BeforeEdit setVideoFile={setVideoFile} />
       ) : (
-        <Editting videoFile={videoFile} />
+        <Editting videoFile={videoFile} setVideoFile={setVideoFile} />
       )}
       <Footer />
     </div>
