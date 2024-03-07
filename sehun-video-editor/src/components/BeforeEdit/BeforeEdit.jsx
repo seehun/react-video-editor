@@ -1,9 +1,21 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./BeforeEdit.module.css";
 import { Button } from "react-bootstrap";
+import { FFmpeg } from "@ffmpeg/ffmpeg";
 
-function BeforeEdit() {
+const ffmpeg = new FFmpeg({ log: true });
+
+function BeforeEdit({ setVideoFile }) {
   const uploadFile = useRef();
+
+  const [FFmpegLoaded, setFFmpegLoaded] = useState(false);
+
+  useEffect(() => {
+    ffmpeg.load().then(() => {
+      setFFmpegLoaded(true);
+    });
+  }, []);
+
   return (
     <div className={styles.viewport}>
       <div className={styles.contents}>
@@ -17,12 +29,21 @@ function BeforeEdit() {
             className={styles.button}
             onClick={() => {
               uploadFile.current.click();
+              console.log(uploadFile.files);
             }}
           >
             Video Upload
           </Button>
         </div>
-        <input type="file" style={{ display: "none" }} ref={uploadFile} />
+        <input
+          type="file"
+          style={{ display: "none" }}
+          ref={uploadFile}
+          accept=".mp4"
+          onChange={(e) => {
+            setVideoFile(e.target.files[0]);
+          }}
+        />
       </div>
     </div>
   );

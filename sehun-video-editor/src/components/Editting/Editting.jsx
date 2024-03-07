@@ -1,9 +1,11 @@
 import React, { useRef } from "react";
 import styles from "./Editting.module.css";
 import { Button } from "react-bootstrap";
+import VideoPlayer from "./VideoPlayer/VideoPlayer";
 
-function Editting() {
+function Editting({ videoFile }) {
   const uploadFile = useRef();
+  console.log("a", videoFile);
   return (
     <div className={styles.viewport}>
       <div className={styles.contents}>
@@ -19,7 +21,9 @@ function Editting() {
           </Button>
           <input type="file" style={{ display: "none" }} ref={uploadFile} />
         </div>
-        <div className={styles.video}></div>
+        <div className={styles.video}>
+          <VideoPlayer src={videoFile} />
+        </div>
         <div className="slideBar"></div>
         <div className={styles.Btn_group}>
           <Button variant="light">GIF</Button>

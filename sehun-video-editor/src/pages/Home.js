@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header/Header";
 import BeforeEdit from "../components/BeforeEdit/BeforeEdit";
 import Footer from "../components/Footer/Footer";
+import Editting from "../components/Editting/Editting";
 
 function Home() {
+  const [videoFile, setVideoFile] = useState();
+
+  useEffect(() => {
+    console.log(videoFile);
+  }, [videoFile]);
+
   return (
     <div>
       <Header />
-      <BeforeEdit />
+      {!videoFile ? (
+        <BeforeEdit setVideoFile={setVideoFile} />
+      ) : (
+        <Editting videoFile={videoFile} />
+      )}
       <Footer />
     </div>
   );
