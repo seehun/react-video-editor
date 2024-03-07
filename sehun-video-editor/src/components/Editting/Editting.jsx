@@ -5,7 +5,7 @@ import VideoPlayer from "./VideoPlayer/VideoPlayer";
 
 function Editting({ videoFile, setVideoFile }) {
   const uploadFile = useRef();
-  console.log("a", videoFile);
+  // console.log("a", videoFile);
   return (
     <div className={styles.viewport}>
       <div className={styles.contents}>

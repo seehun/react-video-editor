@@ -7,9 +7,9 @@ import Editting from "../components/Editting/Editting";
 function Home() {
   const [videoFile, setVideoFile] = useState();
 
-  useEffect(() => {
-    console.log(videoFile);
-  }, [videoFile]);
+  // useEffect(() => {
+  //   console.log(videoFile);
+  // }, [videoFile]);
 
   return (
     <div>

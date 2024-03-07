@@ -8,6 +8,7 @@ const ffmpeg = new FFmpeg({ log: true });
 function BeforeEdit({ setVideoFile }) {
   const uploadFile = useRef();
 
+  //
   const [FFmpegLoaded, setFFmpegLoaded] = useState(false);
 
   useEffect(() => {
@@ -15,6 +16,7 @@ function BeforeEdit({ setVideoFile }) {
       setFFmpegLoaded(true);
     });
   }, []);
+  //
 
   return (
     <div className={styles.viewport}>

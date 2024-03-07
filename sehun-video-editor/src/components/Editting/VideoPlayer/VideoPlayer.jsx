@@ -15,7 +15,6 @@ function VideoPlayer({ src }) {
       ref={(player) => {
         setPlayer(player);
       }}
-      //   src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
       src={source}
     >
       <BigPlayButton position="center" />
