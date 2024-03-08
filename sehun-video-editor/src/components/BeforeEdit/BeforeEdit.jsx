@@ -3,19 +3,19 @@ import styles from "./BeforeEdit.module.css";
 import { Button } from "react-bootstrap";
 import { FFmpeg } from "@ffmpeg/ffmpeg";
 
-const ffmpeg = new FFmpeg({ log: true });
+// const ffmpeg = new FFmpeg({ log: true });
 
 function BeforeEdit({ setVideoFile }) {
   const uploadFile = useRef();
 
   //
-  const [FFmpegLoaded, setFFmpegLoaded] = useState(false);
+  // const [FFmpegLoaded, setFFmpegLoaded] = useState(false);
 
-  useEffect(() => {
-    ffmpeg.load().then(() => {
-      setFFmpegLoaded(true);
-    });
-  }, []);
+  // useEffect(() => {
+  //   ffmpeg.load().then(() => {
+  //     setFFmpegLoaded(true);
+  //   });
+  // }, []);
   //
 
   return (

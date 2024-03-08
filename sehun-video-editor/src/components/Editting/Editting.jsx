@@ -1,11 +1,58 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Editting.module.css";
 import { Button } from "react-bootstrap";
 import VideoPlayer from "./VideoPlayer/VideoPlayer";
+import MultiRangeSlider from "./MultiRangeSlider/MultiRangerSlider";
+import { FFmpeg } from "@ffmpeg/ffmpeg";
+import VideoConversionButton from "./VideoConversionButton/VideoConversionButton";
+import { sliderValueToVideoTime } from "../../utils/utils";
+
+const ffmpeg = new FFmpeg({ log: true });
 
 function Editting({ videoFile, setVideoFile }) {
   const uploadFile = useRef();
-  // console.log("a", videoFile);
+
+  const [FFmpegLoaded, setFFmpegLoaded] = useState(false);
+  const [sliderValues, setSliderValues] = useState([0, 100]);
+
+  const [videoPlayerState, setVideoPlayerState] = useState(); //
+  const [videoPlayer, setVideoPlayer] = useState(); //
+
+  useEffect(() => {
+    ffmpeg.load().then(() => {
+      setFFmpegLoaded(true);
+    });
+  }, []);
+
+  useEffect(() => {
+    // console.log(sliderValues);
+    const min = sliderValues[0];
+    if (min !== undefined && videoPlayerState && videoPlayer) {
+      videoPlayer.seek(sliderValueToVideoTime(videoPlayerState.duration, min));
+    }
+  }, [sliderValues]);
+
+  useEffect(() => {
+    if (videoPlayer && videoPlayerState) {
+      const [min, max] = sliderValues;
+      const minTime = sliderValueToVideoTime(videoPlayerState.duration, min);
+      const maxTime = sliderValueToVideoTime(videoPlayerState.duration, max);
+
+      if (videoPlayerState.currentTime < minTime) {
+        videoPlayer.seek(minTime);
+      }
+      if (videoPlayerState.currentTime > maxTime) {
+        videoPlayer.seek(maxTime);
+      }
+    }
+  }, [videoPlayerState]);
+
+  useEffect(() => {
+    if (!videoFile) {
+      setVideoPlayerState(undefined);
+    }
+  }, [videoFile]);
+
   return (
     <div className={styles.viewport}>
       <div className={styles.contents}>
@@ -30,14 +77,25 @@ function Editting({ videoFile, setVideoFile }) {
           />
         </div>
         <div className={styles.video}>
-          <VideoPlayer src={videoFile} />
+          <VideoPlayer
+            src={videoFile}
+            onPlayerChange={(videoPlayer) => setVideoPlayer(videoPlayer)}
+            onChange={(videoPlayerState) =>
+              setVideoPlayerState(videoPlayerState)
+            }
+          />
         </div>
-        <div className="slideBar"></div>
-        <div className={styles.Btn_group}>
-          <Button variant="light">GIF</Button>
-          <Button variant="light">SOUND</Button>
-          <Button variant="light">SAVE</Button>
+        <div className={styles.slideBar}>
+          <MultiRangeSlider
+            min={0}
+            max={100}
+            onChange={({ min, max }) => {
+              setSliderValues([min, max]);
+            }}
+          />
         </div>
+
+        <VideoConversionButton />
       </div>
     </div>
   );
