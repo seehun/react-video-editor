@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./BeforeEdit.module.css";
 import { Button } from "react-bootstrap";
-import { FFmpeg } from "@ffmpeg/ffmpeg";
+// import { FFmpeg } from "@ffmpeg/ffmpeg";
 
 // const ffmpeg = new FFmpeg({ log: true });
 

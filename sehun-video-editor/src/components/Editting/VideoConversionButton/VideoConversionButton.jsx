@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap";
-import { fetchFile } from "@ffmpeg/util";
+import { fetchFile } from "@ffmpeg/ffmpeg";
 import { readFileAsBase64, sliderValueToVideoTime } from "../../../utils/utils";
 import styles from "./VideoConversionButton.module.css";
 
