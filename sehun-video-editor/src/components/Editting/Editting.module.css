@@ -9,8 +9,15 @@
 .contents {
   width: 65%;
   height: 100%;
+  position: relative;
+}
 
-  /* border: 1px solid #000; */
+.toast {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
 }
 
 .title {

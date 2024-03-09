@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./Editting.module.css";
-import { Button } from "react-bootstrap";
 import VideoPlayer from "./VideoPlayer/VideoPlayer";
 import MultiRangeSlider from "./MultiRangeSlider/MultiRangerSlider";
 import { createFFmpeg } from "@ffmpeg/ffmpeg";
 import VideoConversionButton from "./VideoConversionButton/VideoConversionButton";
 import { sliderValueToVideoTime } from "utils/utils";
+import { Button, Toast, Spinner } from "react-bootstrap";
 
 const ffmpeg = createFFmpeg({ log: true });
 
@@ -31,7 +31,6 @@ function Editing({ videoFile, setVideoFile }) {
   }, []);
 
   useEffect(() => {
-    // console.log(sliderValues);
     const min = sliderValues[0];
     if (min !== undefined && videoPlayerState && videoPlayer) {
       videoPlayer.seek(sliderValueToVideoTime(videoPlayerState.duration, min));
@@ -59,13 +58,18 @@ function Editing({ videoFile, setVideoFile }) {
     }
   }, [videoFile]);
 
-  if (!FFmpegLoaded) return <div>load</div>;
-
   return (
     <div className={styles.viewport}>
       <div className={styles.contents}>
         <div className={styles.title}>
           <h1>video edit</h1>
+          {processing ? (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          ) : (
+            ""
+          )}
           <Button
             variant="light"
             onClick={() => {
@@ -85,13 +89,19 @@ function Editing({ videoFile, setVideoFile }) {
           />
         </div>
         <div className={styles.video}>
-          <VideoPlayer
-            src={videoFile}
-            onPlayerChange={(videoPlayer) => setVideoPlayer(videoPlayer)}
-            onChange={(videoPlayerState) =>
-              setVideoPlayerState(videoPlayerState)
-            }
-          />
+          {!FFmpegLoaded ? (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          ) : (
+            <VideoPlayer
+              src={videoFile}
+              onPlayerChange={(videoPlayer) => setVideoPlayer(videoPlayer)}
+              onChange={(videoPlayerState) =>
+                setVideoPlayerState(videoPlayerState)
+              }
+            />
+          )}
         </div>
         <div className={styles.slideBar}>
           <MultiRangeSlider
@@ -120,6 +130,20 @@ function Editing({ videoFile, setVideoFile }) {
           videoFile={videoFile}
         />
       </div>
+
+      <Toast
+        show={show}
+        onClose={() => {
+          setShow(false);
+        }}
+        className={styles.toast}
+        bg={"secondary"}
+      >
+        <Toast.Header>
+          <strong className="me-auto">SehunEditor</strong>
+        </Toast.Header>
+        <Toast.Body>complete!</Toast.Body>
+      </Toast>
     </div>
   );
 }

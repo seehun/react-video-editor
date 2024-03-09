@@ -65,8 +65,6 @@ export default function MultiRangeSlider({
   //   onChange({ min: minVal, max: maxVal });
   // }, [minVal, maxVal]);
 
-  console.log(minVal, maxVal);
-
   return (
     <div>
       <input
