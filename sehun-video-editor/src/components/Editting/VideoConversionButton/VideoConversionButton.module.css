@@ -3,6 +3,7 @@
   display: flex;
   gap: 4px;
 }
+
 .Btn_group Button {
   flex-grow: 1;
   border: 1px solid #bdbdbd;

@@ -5,11 +5,11 @@ import VideoPlayer from "./VideoPlayer/VideoPlayer";
 import MultiRangeSlider from "./MultiRangeSlider/MultiRangerSlider";
 import { createFFmpeg } from "@ffmpeg/ffmpeg";
 import VideoConversionButton from "./VideoConversionButton/VideoConversionButton";
-import { sliderValueToVideoTime } from "../../utils/utils";
+import { sliderValueToVideoTime } from "utils/utils";
 
 const ffmpeg = createFFmpeg({ log: true });
 
-function Editting({ videoFile, setVideoFile }) {
+function Editing({ videoFile, setVideoFile }) {
   const uploadFile = useRef();
 
   const [FFmpegLoaded, setFFmpegLoaded] = useState(false);
@@ -97,7 +97,10 @@ function Editting({ videoFile, setVideoFile }) {
           <MultiRangeSlider
             min={0}
             max={100}
-            onChange={({ min, max }) => {
+            // onChange={({ min, max }) => {
+            //   setSliderValues([min, max]);
+            // }}
+            onSliderValueChange={(min, max) => {
               setSliderValues([min, max]);
             }}
           />
@@ -121,4 +124,4 @@ function Editting({ videoFile, setVideoFile }) {
   );
 }
 
-export default Editting;
+export default Editing;

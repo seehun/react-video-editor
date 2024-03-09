@@ -6,7 +6,7 @@ function Footer() {
     <div className={styles.viewport}>
       <div className={styles.contents}>
         <div className={styles.content_info}>
-          <img src={process.env.PUBLIC_URL + `/assets/VE_w.png`} alt="" />
+          <img src={process.env.PUBLIC_URL + "/assets/VE_w.png"} alt="" />
           <div>
             <span className={styles.title}>Tel.</span>
             <span>010-3294-5804</span>

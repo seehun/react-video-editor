@@ -1,15 +1,14 @@
-import {
-  ChangeEvent,
-  FC,
-  useCallback,
-  useEffect,
-  useState,
-  useRef,
-} from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import classnames from "classnames";
 import "./multiRangeSlider.css";
 
-export default function MultiRangeSlider({ min, max, onChange, disabled }) {
+export default function MultiRangeSlider({
+  min,
+  max,
+  // onChange,
+  onSliderValueChange,
+  disabled,
+}) {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(null);
@@ -47,10 +46,26 @@ export default function MultiRangeSlider({ min, max, onChange, disabled }) {
     }
   }, [maxVal, getPercent]);
 
+  const minChangeHandler = (event) => {
+    const value = Math.min(+event.target.value, maxVal - 1);
+    setMinVal(value);
+    event.target.value = value.toString();
+    onSliderValueChange(minVal, maxVal);
+  };
+
+  const maxChangeHandelr = (event) => {
+    const value = Math.max(+event.target.value, minVal + 1);
+    setMaxVal(value);
+    event.target.value = value.toString();
+    onSliderValueChange(minVal, maxVal);
+  };
+
   // Get min and max values when their state changes
-  useEffect(() => {
-    onChange({ min: minVal, max: maxVal });
-  }, [minVal, maxVal]);
+  // useEffect(() => {
+  //   onChange({ min: minVal, max: maxVal });
+  // }, [minVal, maxVal]);
+
+  console.log(minVal, maxVal);
 
   return (
     <div>
@@ -60,11 +75,7 @@ export default function MultiRangeSlider({ min, max, onChange, disabled }) {
         max={max}
         value={minVal}
         ref={minValRef}
-        onChange={(event) => {
-          const value = Math.min(+event.target.value, maxVal - 1);
-          setMinVal(value);
-          event.target.value = value.toString();
-        }}
+        onChange={minChangeHandler}
         className={classnames("thumb thumb--zindex-3", {
           "thumb--zindex-5": minVal > max - 100,
         })}
@@ -75,11 +86,7 @@ export default function MultiRangeSlider({ min, max, onChange, disabled }) {
         max={max}
         value={maxVal}
         ref={maxValRef}
-        onChange={(event) => {
-          const value = Math.max(+event.target.value, minVal + 1);
-          setMaxVal(value);
-          event.target.value = value.toString();
-        }}
+        onChange={maxChangeHandelr}
         className="thumb thumb--zindex-4"
       />
 

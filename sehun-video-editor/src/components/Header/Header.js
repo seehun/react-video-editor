@@ -12,8 +12,7 @@ function Header() {
             navigate("/");
           }}
         >
-          <img src={process.env.PUBLIC_URL + `/assets/VE_b.png`} alt="" />
-          {/* <img src={process.env.PUBLIC_URL + `/assets/E.png`} alt="" /> */}
+          <img src={process.env.PUBLIC_URL + "assets/VE_b.png"} alt="" />
         </button>
         <div className={styles.header_btns}>
           <button className={styles.active}>비디오 편집</button>
