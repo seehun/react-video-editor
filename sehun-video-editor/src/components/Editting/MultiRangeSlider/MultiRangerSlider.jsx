@@ -5,12 +5,12 @@ import "./multiRangeSlider.css";
 export default function MultiRangeSlider({
   min,
   max,
-  // onChange,
   onSliderValueChange,
   disabled,
 }) {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
+  const [whatChange, setWhatChange] = useState("");
   const minValRef = useRef(null);
   const maxValRef = useRef(null);
   const range = useRef(null);
@@ -21,49 +21,48 @@ export default function MultiRangeSlider({
     [min, max]
   );
 
-  // Set width of the range to decrease from the left side
   useEffect(() => {
-    if (maxValRef.current) {
-      const minPercent = getPercent(minVal);
-      const maxPercent = getPercent(+maxValRef.current.value); // Precede with '+' to convert the value from type string to type number
+    if (whatChange == "min") {
+      //min이 바뀌면
+      if (maxValRef.current) {
+        const minPercent = getPercent(minVal);
+        const maxPercent = getPercent(+maxValRef.current.value); // + => string을 number로 만들어줌
 
-      if (range.current) {
-        range.current.style.left = `${minPercent}%`;
-        range.current.style.width = `${maxPercent - minPercent}%`;
+        if (range.current) {
+          range.current.style.left = `${minPercent}%`;
+          range.current.style.width = `${maxPercent - minPercent}%`;
+        }
       }
-    }
-  }, [minVal, getPercent]);
+      //
+    } else {
+      //max가 바뀌면
+      if (minValRef.current) {
+        const minPercent = getPercent(+minValRef.current.value);
+        const maxPercent = getPercent(maxVal);
 
-  // Set width of the range to decrease from the right side
-  useEffect(() => {
-    if (minValRef.current) {
-      const minPercent = getPercent(+minValRef.current.value);
-      const maxPercent = getPercent(maxVal);
-
-      if (range.current) {
-        range.current.style.width = `${maxPercent - minPercent}%`;
+        if (range.current) {
+          range.current.style.width = `${maxPercent - minPercent}%`;
+        }
       }
+      //
     }
-  }, [maxVal, getPercent]);
+  }, [minVal, maxVal]);
 
   const minChangeHandler = (event) => {
+    setWhatChange("min");
     const value = Math.min(+event.target.value, maxVal - 1);
     setMinVal(value);
     event.target.value = value.toString();
-    onSliderValueChange(minVal, maxVal);
+    onSliderValueChange(value, maxVal);
   };
 
-  const maxChangeHandelr = (event) => {
+  const maxChangeHandler = (event) => {
+    setWhatChange("max");
     const value = Math.max(+event.target.value, minVal + 1);
     setMaxVal(value);
     event.target.value = value.toString();
-    onSliderValueChange(minVal, maxVal);
+    onSliderValueChange(minVal, value);
   };
-
-  // Get min and max values when their state changes
-  // useEffect(() => {
-  //   onChange({ min: minVal, max: maxVal });
-  // }, [minVal, maxVal]);
 
   return (
     <div>
@@ -84,7 +83,7 @@ export default function MultiRangeSlider({
         max={max}
         value={maxVal}
         ref={maxValRef}
-        onChange={maxChangeHandelr}
+        onChange={maxChangeHandler}
         className="thumb thumb--zindex-4"
       />
 
