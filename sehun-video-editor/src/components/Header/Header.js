@@ -3,7 +3,6 @@ import styles from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
 
 function Header({ currentPage }) {
-  console.log(currentPage);
   const navigate = useNavigate();
   return (
     <div className={styles.header}>

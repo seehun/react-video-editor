@@ -31,6 +31,9 @@ function VideoPlayer({
 
   return (
     <Player
+      fluid={false}
+      width={"100%"}
+      height={"100%"}
       ref={(player) => {
         setPlayer(player);
       }}
