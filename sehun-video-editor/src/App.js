@@ -2,8 +2,8 @@ import "./App.css";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Edit from "./pages/Edit";
 import Login from "pages/Login";
+import VideoEdit from "pages/VideoEdit";
 
 function App() {
   return (
@@ -11,8 +11,8 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/edit" element={<Edit />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/videoEdit" element={<VideoEdit />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -22,7 +22,7 @@ function Footer({ currentPage }) {
           <button
             className={currentPage === "videoEdit" ? styles.active : ""}
             onClick={() => {
-              navigate("/");
+              navigate("/videoEdit");
             }}
           >
             비디오 편집

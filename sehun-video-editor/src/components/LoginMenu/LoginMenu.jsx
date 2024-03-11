@@ -17,7 +17,7 @@ function LoginMenu() {
 
   const onSubmit = (data) => {
     console.log(data);
-    navigate("/");
+    navigate("/videoEdit");
   };
 
   return (
