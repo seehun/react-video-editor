@@ -41,3 +41,16 @@ module.exports = function (app) {
     });
 };
 ```
+
+### video player가 정해진 UI를 벗어나는 문제
+
+Video-react 문서를 살펴본 결과  
+VideoPlayer.jsx의 Player에
+
+```
+fluid={false}
+width={"100%"}
+height={"100%"}
+```
+
+다음의 코드 추가
