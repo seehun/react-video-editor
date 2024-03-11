@@ -1,6 +1,7 @@
 import { Button } from "react-bootstrap";
 import { fetchFile } from "@ffmpeg/ffmpeg";
-import { readFileAsBase64, sliderValueToVideoTime } from "../../../utils/utils";
+// import { readFileAsBase64, sliderValueToVideoTime } from "../../../utils/utils";
+import { readFileAsBase64, sliderValueToVideoTime } from "utils/utils";
 import styles from "./VideoConversionButton.module.css";
 
 function VideoConversionButton({
@@ -57,6 +58,50 @@ function VideoConversionButton({
     onConversionEnd(false);
   };
 
+  const convertToSound = async () => {
+    // starting the conversion process
+    onConversionStart(true);
+
+    const inputFileName = "input.mp4";
+    const outputFileName = "output.mp3";
+
+    // writing the video file to memory
+    ffmpeg.FS("writeFile", inputFileName, await fetchFile(videoFile));
+
+    const [min, max] = sliderValues;
+    const minTime = sliderValueToVideoTime(videoPlayerState.duration, min);
+    const maxTime = sliderValueToVideoTime(videoPlayerState.duration, max);
+
+    // cutting the video and converting it to mp3 with a FFMpeg command
+    await ffmpeg.run(
+      "-i",
+      inputFileName,
+      "-ss",
+      `${minTime}`,
+      "-to",
+      `${maxTime}`,
+      "-vn",
+      outputFileName
+    );
+
+    // reading the resulting file
+    const data = ffmpeg.FS("readFile", outputFileName);
+
+    // converting the GIF file created by FFmpeg to a valid image URL
+    const gifUrl = URL.createObjectURL(
+      new Blob([data.buffer], { type: "audio/mp3" })
+    );
+
+    const link = document.createElement("a");
+    link.href = gifUrl;
+    link.setAttribute("download", "");
+    link.click();
+
+    // ending the conversion process
+
+    onConversionEnd(false);
+  };
+
   const onCutTheVideo = async () => {
     onConversionStart(true);
 
@@ -96,7 +141,9 @@ function VideoConversionButton({
         <Button variant="light" onClick={() => convertToGif()}>
           GIF
         </Button>
-        <Button variant="light">SOUND</Button>
+        <Button variant="light" onClick={() => convertToSound()}>
+          SOUND
+        </Button>
         <Button variant="light" onClick={() => onCutTheVideo()}>
           SAVE
         </Button>
