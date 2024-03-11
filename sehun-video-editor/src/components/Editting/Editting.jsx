@@ -27,7 +27,6 @@ function Editing({ videoFile, setVideoFile }) {
     ffmpeg.load().then(() => {
       setFFmpegLoaded(true);
     });
-    console.log(FFmpegLoaded);
   }, []);
 
   useEffect(() => {
@@ -57,6 +56,22 @@ function Editing({ videoFile, setVideoFile }) {
       setVideoPlayerState(undefined);
     }
   }, [videoFile]);
+
+  //drag &drop을 위한 코드
+  const [active, setActive] = useState(false);
+  const handleDragStart = () => setActive(true);
+  const handleDragEnd = () => setActive(false);
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+  const handleDrop = (e) => {
+    e.preventDefault();
+
+    const file = e.dataTransfer.files[0];
+    setVideoFile(file);
+    setActive(false);
+  };
+  //
 
   return (
     <div className={styles.viewport}>
@@ -88,7 +103,13 @@ function Editing({ videoFile, setVideoFile }) {
             }}
           />
         </div>
-        <div className={styles.video}>
+        <div
+          className={[styles.video, active ? styles.active : ""].join(" ")}
+          onDragEnter={handleDragStart} //drag가 들어오면
+          onDragLeave={handleDragEnd} //drag가 나오면
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+        >
           {!FFmpegLoaded ? (
             <Spinner animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
@@ -107,9 +128,6 @@ function Editing({ videoFile, setVideoFile }) {
           <MultiRangeSlider
             min={0}
             max={100}
-            // onChange={({ min, max }) => {
-            //   setSliderValues([min, max]);
-            // }}
             onSliderValueChange={(min, max) => {
               setSliderValues([min, max]);
             }}

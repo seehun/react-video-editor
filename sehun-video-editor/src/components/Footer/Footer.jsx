@@ -1,7 +1,9 @@
 import React from "react";
 import styles from "./Footer.module.css";
+import { useNavigate } from "react-router-dom";
 
-function Footer() {
+function Footer({ currentPage }) {
+  const navigate = useNavigate();
   return (
     <div className={styles.viewport}>
       <div className={styles.contents}>
@@ -17,9 +19,25 @@ function Footer() {
           </div>
         </div>
         <div className={styles.footer_btns}>
-          <button className={styles.active}>비디오 편집</button>
-          <button>이미지 편집</button>
-          <button>로그인</button>
+          <button
+            className={currentPage === "videoEdit" ? styles.active : ""}
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            비디오 편집
+          </button>
+          <button className={currentPage === "imageEdit" ? styles.active : ""}>
+            이미지 편집
+          </button>
+          <button
+            className={currentPage === "login" ? styles.active : ""}
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            로그인
+          </button>
         </div>
       </div>
     </div>

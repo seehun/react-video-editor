@@ -25,7 +25,11 @@ function LoginMenu() {
       <div className={styles.contents}>
         <div className={styles.loginFormBox}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <input {...register("id", { required: true })} placeholder="id" />
+            <input
+              {...register("id", { required: true })}
+              placeholder="id"
+              autoFocus
+            />
             <input {...register("pw", { required: true })} placeholder="pw" />
 
             <Button

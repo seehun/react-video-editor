@@ -9,7 +9,7 @@ function Login() {
     <div>
       <Header currentPage={"login"} />
       <LoginMenu />
-      <Footer />
+      <Footer currentPage={"login"} />
     </div>
   );
 }

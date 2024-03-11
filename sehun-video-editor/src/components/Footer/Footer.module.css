@@ -51,3 +51,7 @@
   color: #828282;
   cursor: pointer;
 }
+
+.active {
+  color: #fff !important;
+}

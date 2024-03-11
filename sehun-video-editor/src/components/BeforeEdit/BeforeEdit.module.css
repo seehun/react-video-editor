@@ -9,8 +9,6 @@
 .contents {
   width: 65%;
   height: 100%;
-
-  /* border: 1px solid #000; */
 }
 
 .contents h1 {
@@ -30,6 +28,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.active {
+  background-color: #efeef3;
+  border: 3px dashed #000;
 }
 
 .button_box {

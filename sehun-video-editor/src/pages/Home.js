@@ -15,7 +15,7 @@ function Home() {
       ) : (
         <Editing videoFile={videoFile} setVideoFile={setVideoFile} />
       )}
-      <Footer />
+      <Footer currentPage={"videoEdit"} />
     </div>
   );
 }
