@@ -4,9 +4,10 @@
 
 react-router-dom  
 react-bootstrap bootstrap  
-@ffmpeg/ffmpeg  
-@ffmpeg/util  
-video-react
+@ffmpeg/ffmpeg@0.9.8  
+@ffmpeg/core@0.10.0  
+video-react  
+react-hook-form
 
 ## 트러블슈팅\*\*
 

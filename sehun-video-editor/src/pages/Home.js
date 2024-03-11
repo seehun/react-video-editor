@@ -9,7 +9,7 @@ function Home() {
 
   return (
     <div>
-      <Header />
+      <Header currentPage={"videoEdit"} />
       {!videoFile ? (
         <BeforeEdit setVideoFile={setVideoFile} />
       ) : (

@@ -137,7 +137,7 @@ function Editing({ videoFile, setVideoFile }) {
           setShow(false);
         }}
         className={styles.toast}
-        bg={"secondary"}
+        bg={"light"}
       >
         <Toast.Header>
           <strong className="me-auto">SehunEditor</strong>
