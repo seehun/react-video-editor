@@ -9,7 +9,7 @@ react-bootstrap bootstrap
 video-react  
 react-hook-form
 
-## 트러블슈팅\*\*
+## 트러블슈팅
 
 ### input에서 동영상 업로드하는 법
 
