@@ -30,7 +30,11 @@ function LoginMenu() {
               placeholder="id"
               autoFocus
             />
-            <input {...register("pw", { required: true })} placeholder="pw" />
+            <input
+              {...register("pw", { required: true })}
+              placeholder="pw"
+              type="password"
+            />
 
             <Button
               variant="primary"

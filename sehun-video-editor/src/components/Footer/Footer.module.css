@@ -52,6 +52,10 @@
   cursor: pointer;
 }
 
+.footer_btns button:hover {
+  color: #fff;
+}
+
 .active {
   color: #fff !important;
 }

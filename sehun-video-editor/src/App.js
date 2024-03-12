@@ -1,9 +1,9 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "pages/Login";
-import VideoEdit from "pages/VideoEdit";
+import Home from "./pages/Home/Home";
+import Login from "pages/Login/Login";
+import VideoEdit from "pages/VideoEdit/VideoEdit";
 
 function App() {
   return (

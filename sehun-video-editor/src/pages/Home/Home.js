@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
+import Header from "components/Header/Header";
+import Footer from "components/Footer/Footer";
 import HomeComponent from "components/HomeComponent/HomeComponent";
 
 function Home() {
