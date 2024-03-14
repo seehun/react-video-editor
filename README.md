@@ -1,6 +1,10 @@
 # Video Editor 만들기
 
+배포 주소
 https://seehun.github.io/react-video-editor
+
+회고글
+https://velog.io/@shoon99/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%8D%B0%EB%B8%8C%EC%BD%94%EC%8A%A4-%EB%B9%84%EB%94%94%EC%98%A4-%EC%97%90%EB%94%94%ED%84%B0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%9A%8C%EA%B3%A0
 
 ## install한 라이브러리 목록\*\*
 
