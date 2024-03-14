@@ -1,6 +1,6 @@
 # Video Editor 만들기
 
-https://seehun.github.io/react-video-editor/videoEdit
+https://seehun.github.io/react-video-editor
 
 ## install한 라이브러리 목록\*\*
 
