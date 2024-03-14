@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/react-video-editor/static/css/main.fd5dbb73.css",
-    "main.js": "/react-video-editor/static/js/main.75d1d605.js",
+    "main.js": "/react-video-editor/static/js/main.ffbc98ef.js",
     "index.html": "/react-video-editor/index.html",
     "main.fd5dbb73.css.map": "/react-video-editor/static/css/main.fd5dbb73.css.map",
-    "main.75d1d605.js.map": "/react-video-editor/static/js/main.75d1d605.js.map"
+    "main.ffbc98ef.js.map": "/react-video-editor/static/js/main.ffbc98ef.js.map"
   },
   "entrypoints": [
     "static/css/main.fd5dbb73.css",
-    "static/js/main.75d1d605.js"
+    "static/js/main.ffbc98ef.js"
   ]
 }
